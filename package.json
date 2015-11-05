@@ -1,0 +1,33 @@
+{
+  "name": "leaflet-featurestorage",
+  "version": "1.0.0",
+  "description": "Leaflet plugin that allows an easy API to simple POST & GET storage service.",
+  "main": "src/Leaflet.FeatureStorage.JSON",
+  "scripts": {
+    "lint": "eslint src test",
+    "lint-fix": "eslint --fix src test"
+  },
+  "keywords": [
+    "leaflet",
+    "storage",
+    "save",
+    "geojson"
+  ],
+  "author": "Coen Mulders",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^1.7",
+    "eslint-config-mourner": "^1.0.0"
+  },
+  "dependencies": {
+    "leaflet": ">1.0.0-beta"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cmulders/Leaflet.FeatureStorage.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cmulders/Leaflet.FeatureStorage/issues"
+  },
+  "homepage": "https://github.com/cmulders/Leaflet.FeatureStorage#readme"
+}

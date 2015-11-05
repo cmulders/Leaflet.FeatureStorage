@@ -8,7 +8,7 @@ As an utility, ```L.fs.myjson()``` could be used out of the box for json storage
 - Leaflet
 
 ## Compatibility
-Requires XHR 
+Requires XHR support of the browser
 
 ## Usage
 ```js
@@ -20,9 +20,9 @@ var jsonStorage = L.featurestorage.json({
 // or 
 var jsonStorage = L.fs.myjson();
 
-var layer = L.geojson();
+var layer = L.rectangle([[54.559322, -5.767822], [56.1210604, -3.021240]]);
 
-var jsonID
+var jsonID;
 jsonStorage.save(layer, function (id){
     jsonID = id
 });
@@ -34,15 +34,18 @@ jsonStorage.load(jsonID, function (geoJSON){
     newLayer.addData(geoJSON);
 });
 
+
+// newLayer will now have the rectangle as sublayer
 ```
+
 
 ## API
 This plugin creates the L.FeatureStorage (= L.FS) namespace for the objects and L.featurestorage (= L.fs) for the factory methods.
 
 ### Creation
-Factory                        | Description
--------------------------------| --- 
-L.featurestorage.json(options) | Creates the instance, requires to set export- and importUrl options
+Factory                            | Description
+---------------------------------- | --- 
+L.featurestorage.json( *options* ) | Creates the instance, requires to set export- and importUrl options
 
 #### Options
 The regular L.Control options can be used and additionally:

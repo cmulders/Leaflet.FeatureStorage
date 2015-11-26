@@ -37,12 +37,12 @@ L.FeatureStorage.JSON = L.Class.extend({
 
 	save: function (layer, onSucces, onError) {
 		if (!layer || !layer.toGeoJSON) {
-			callback(false);
+			onSucces(false);
 			return;
 		}
 		var geojson = layer.toGeoJSON();
 		if (geojson.features.length === 0) {
-			callback(null);
+			onSucces(false);
 			return;
 		}
 

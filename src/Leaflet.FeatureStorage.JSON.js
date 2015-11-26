@@ -13,7 +13,7 @@ L.FeatureStorage.JSON = L.Class.extend({
 		}
 	},
 
-	load: function (jsonid, callback) {
+	load: function (jsonid, onSucces, onError) {
 		if (jsonid === '' || jsonid === true || jsonid === false) {
 			return false;
 		}
@@ -26,16 +26,16 @@ L.FeatureStorage.JSON = L.Class.extend({
 		// status 200, parse geoJson
 		L.DomEvent.on(xmlhttp, 'readystatechange', function () {
 			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-				callback(JSON.parse(xmlhttp.responseText));
+				onSucces(JSON.parse(xmlhttp.responseText));
 			} else if (xmlhttp.readyState === 4) {
-				throw new Error('Could not load from json storage');
+				onError(xmlhttp);
 			}
 		}, this);
 
 		xmlhttp.send();
 	},
 
-	save: function (layer, callback) {
+	save: function (layer, onSucces, onError) {
 		if (!layer || !layer.toGeoJSON) {
 			callback(false);
 			return;
@@ -55,9 +55,9 @@ L.FeatureStorage.JSON = L.Class.extend({
 			if (xmlhttp.readyState === 4  && xmlhttp.status === 201) {
 				var url = JSON.parse(xmlhttp.responseText).uri;
 				var storageID = url.split('/').slice(-1)[0];
-				callback(storageID);
+				onSucces(storageID);
 			} else if (xmlhttp.readyState === 4) {
-				throw new Error('Could not save to json storage', this);
+				onError(xmlhttp);
 			}
 		}, this);
 
